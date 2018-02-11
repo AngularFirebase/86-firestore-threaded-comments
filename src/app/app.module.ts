@@ -14,14 +14,17 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 // Firebase setup instructions
 
 // 1. delete this line, then...
-import { firebaseConfig } from '../env'; 
+import { firebaseConfig } from '../env';
+import { DbService } from './db.service';
+import { CommentComponent } from './comment.component'; 
 
 // 2. Add your own firebase config to environment.ts
 // 3. Use the environment to initialize angularfire2 below, like so AngularFireModule.initializeApp(environment.firebaseConfig),
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,7 @@ import { firebaseConfig } from '../env';
     AngularFirestoreModule,
     AngularFireAuthModule
   ],
-  providers: [],
+  providers: [DbService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

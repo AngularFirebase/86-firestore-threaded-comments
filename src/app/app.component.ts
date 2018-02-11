@@ -1,19 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { DbService } from './db.service'
 import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.sass']
+  styleUrls: ['./app.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
 
+  comments;
+  
+  constructor(public db: DbService) { }
 
-  constructor(private afs: AngularFirestore) { }
-
-  ngOnInit() { }
+  ngOnInit() {
+    this.comments = this.db.getComments();
+  }
 
 
 }
